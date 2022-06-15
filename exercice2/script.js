@@ -18,10 +18,15 @@ let button = document.querySelector("button") // selectionne le button
 let response;
 
 
-button.addEventListener("click", () => {
+button.addEventListener("click", async () => { // lancement du click ainsi que la fonction async
     console.log("coucou")
     let input = document.querySelector("#input").value; // selectionne le input
-    let api = await fetch(`https://api.agify.io?name=${input}`) // requete de l'api
-    response = await api.json(); // on récupère les données de la réponse
+    let api = await fetch(`https://api.agify.io?name=${input}`) // requete de l'api !!! au petit crochet `` altgr + u spécial au dessus de shift !!!
+    response = await api.json(); // on récupère les données de la réponse et on les transforme en json
     console.log(response); // affiche les données de la réponse
+    let retour = document.createElement("div") // création d'une div
+    let body = document.querySelector("body") // création d'un let sélectionnant le body
+    body.appendChild(retour) // La div devient l'enfant de body
+    retour.innerText = response.error // affiche le message d'erreur dans la div
 })
+
